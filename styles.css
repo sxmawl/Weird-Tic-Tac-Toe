@@ -1,0 +1,52 @@
+body{
+  padding:3%;
+  text-align: center;
+}
+.big-game-box{
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  width: 350px;
+}
+.game-box{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  margin:10px;
+  width: 110px;
+  height: 110px;
+}
+.game-cell{
+  border: 0.2px solid #333333;
+  height: 35px;
+  width: 35px;
+  line-height: 40px;
+  font-size: 35px;
+}
+p{
+  font-size: 4rem;
+  margin: 15px auto 30px;
+}
+.restart-btn{
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+h1{
+  font-size: 4rem;
+  margin: 0;
+}
+#start-box .game-cell{
+  border-color: white;
+  color: white;
+}
+p{
+  font-size: 1.4rem;
+  margin: 0 auto;
+}
+.relief{
+ margin: 0 auto;
+ font-size: 2rem;
+}
+.game-status{
+  font-size: 3rem;
+}
