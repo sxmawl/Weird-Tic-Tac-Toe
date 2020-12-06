@@ -17,7 +17,7 @@ let bigWinCases =["", "", "", "", "", "", "", "", ""];
 
 
 function win() {
-  return "Player " + player + " has won the game.";
+  return "Player " + player + " has won the game. Click on the Restart Button.";
 }
 
 function draw() {
@@ -99,7 +99,6 @@ const winningCases = [
 
 function resultCheck() {
   smallWin();
-  handleNextPlayer();
   bigWin();
   const clickedCell = event.target;
   const clickedCellNumber = parseInt(clickedCell.getAttribute("data-cell-number"));
@@ -134,6 +133,7 @@ function restartFunc() {
     ["", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", ""],
   ];
+  bigWinCases =["", "", "", "", "", "", "", "", ""];
   player = "X";
   turn.innerHTML = playerTurn();
   for (let i = 0; i < document.querySelectorAll(".game-cell").length; i++) {
@@ -152,6 +152,11 @@ function restartFunc() {
   }
 
    document.querySelector(".game-box").style.backgroundColor = "black";
+   for (let i = 0; i < 9; i++) {
+    for(let b=0; b<9;b++ ){
+    allBox[i].children[b].addEventListener("click", handleClick);
+    }
+  }
 
 }
  
@@ -166,10 +171,8 @@ function smallWin(){
         continue;
       }
       if (a === b && b === c) {
-        document.querySelectorAll(".game-box")[q].style.backgroundColor = "dimgrey";
-        
-        bigWinCases[q]=player;
-        gameState = false;
+        document.querySelectorAll(".game-box")[q].style.backgroundColor = "dimgrey";  
+        bigWinCases[q] = a ;
       }    
     }
   }
@@ -194,15 +197,13 @@ function bigWin(){
     }
   }
   if(roundWon){
-    if (player == "X") {
-      player = "O";
-      turn.innerHTML = playerTurn();
-    } else {
-      player = "X";
-      turn.innerHTML = playerTurn();
-    }    
     turn.innerHTML =win();
-    alert("Player " + player+ " has won the game.");
+    alert("Player " + player + " has won the game.");
+    for (let i = 0; i < 9; i++) {
+      for(let b=0; b<9;b++ ){
+      allBox[i].children[b].removeEventListener("click", handleClick);
+      }
+    }
     return;
   }
     let roundDraw = bigWinCases.includes("");
@@ -211,6 +212,8 @@ function bigWin(){
       gameState = false;
       return;
     }
+
+  handleNextPlayer();
 
 }
 function colorAllExceptGrey() {
